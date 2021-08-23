@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StockbitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/StockbitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StockbitTest.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StockbitTest.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StockbitTest.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/StockbitTest.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/StockbitTest.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/StockbitTest.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common_test/StockbitTest.common_test.iml" filepath="$PROJECT_DIR$/.idea/modules/common_test/StockbitTest.common_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/StockbitTest.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/StockbitTest.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/local/StockbitTest.data.local.iml" filepath="$PROJECT_DIR$/.idea/modules/data/local/StockbitTest.data.local.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/model/StockbitTest.data.model.iml" filepath="$PROJECT_DIR$/.idea/modules/data/model/StockbitTest.data.model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/remote/StockbitTest.data.remote.iml" filepath="$PROJECT_DIR$/.idea/modules/data/remote/StockbitTest.data.remote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/repository/StockbitTest.data.repository.iml" filepath="$PROJECT_DIR$/.idea/modules/data/repository/StockbitTest.data.repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/navigation/StockbitTest.navigation.iml" filepath="$PROJECT_DIR$/.idea/modules/navigation/StockbitTest.navigation.iml" />
+    </modules>
+  </component>
+</project>
