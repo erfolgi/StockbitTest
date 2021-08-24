@@ -11,12 +11,15 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
+import com.github.nkzawa.socketio.client.IO
+import com.github.nkzawa.socketio.client.Socket
 import com.stockbit.hiring.R
 import com.stockbit.hiring.databinding.ActivityLoginBinding
 import com.stockbit.hiring.databinding.ActivityWatchlistBinding
 import com.stockbit.hiring.util.PaginationListener
 import com.stockbit.hiring.util.Util
 import com.stockbit.hiring.util.ViewModelFactory
+import java.net.URISyntaxException
 
 class WatchlistActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityWatchlistBinding
@@ -28,6 +31,7 @@ class WatchlistActivity : AppCompatActivity() {
     var loading=false
 
     lateinit var skeleton: Skeleton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +65,15 @@ class WatchlistActivity : AppCompatActivity() {
 
         vm = obtainViewModel(this)
 
+
+
         mBinding.srStock.setOnRefreshListener {
             pageX=0
             lastPage = false
             loadData()
         }
+
+
     }
 
     override fun onResume() {

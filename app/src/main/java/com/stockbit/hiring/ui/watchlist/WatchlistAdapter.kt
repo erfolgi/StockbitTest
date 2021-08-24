@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.github.nkzawa.socketio.client.Socket
 import com.stockbit.hiring.R
 import com.stockbit.hiring.data.source.remote.response.DataItem
 
