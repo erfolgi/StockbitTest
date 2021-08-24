@@ -21,7 +21,7 @@ class WatchlistAdapter (private val context: Context)
     fun setListStocks(newList: ArrayList<DataItem>?) {
         if (newList==null) return
         this.items.addAll(newList)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(itemCount-(newList.size-1),newList.size)
     }
 
     fun clearListStocks() {

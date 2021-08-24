@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.faltenreich.skeletonlayout.Skeleton
+import com.faltenreich.skeletonlayout.applySkeleton
 import com.stockbit.hiring.R
 import com.stockbit.hiring.databinding.ActivityLoginBinding
 import com.stockbit.hiring.databinding.ActivityWatchlistBinding
@@ -25,10 +27,15 @@ class WatchlistActivity : AppCompatActivity() {
     var lastPage=false
     var loading=false
 
+    lateinit var skeleton: Skeleton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding= ActivityWatchlistBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+
+        skeleton=mBinding.rvStock.applySkeleton(R.layout.item_stock,10)
+        skeleton=Util.skeletonSetup(skeleton)
 
         //RV setup
         var lmanager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -69,26 +76,40 @@ class WatchlistActivity : AppCompatActivity() {
     private fun loadData(){
         loading=false
         if(pageX==0){
-            mBinding.srStock.isRefreshing=true
+            skeleton.showSkeleton()
         }
 
         vm.getStockList(pageX).observe(this, Observer {
             mBinding.srStock.isRefreshing=false
+            if(skeleton.isSkeleton()){
+                skeleton.showOriginal()
+                mBinding.rvStock.adapter=adapter
+            }
+
             if(it!=null){
+                mBinding.llEmptyState.visibility=View.GONE
+                mBinding.rvStock.visibility=View.VISIBLE
                 if(pageX==0){
                     adapter.clearListStocks()
                 }
                 adapter.setListStocks(it)
-                adapter.notifyDataSetChanged()
-            }else{
 
+            }else{
+                if(pageX==0){
+                    mBinding.rvStock.visibility=View.GONE
+                    mBinding.llEmptyState.visibility=View.VISIBLE
+                    mBinding.llEmptyState.setOnClickListener {
+                        pageX=0
+                        lastPage = false
+                        loadData()
+                    }
+                }
             }
         })
         lastPage = adapter.itemCount>=50
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): WatchlistViewModel {
-        // Use a Factory to inject dependencies into the ViewModel
         val factory = ViewModelFactory.getInstance()
 
         return ViewModelProviders.of(activity, factory).get(WatchlistViewModel::class.java)

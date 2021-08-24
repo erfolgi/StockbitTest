@@ -37,9 +37,7 @@ class StockRepository (var remoteData: RemoteDataSource
 
         remoteData.getStock(object :StockInterface{
             override fun onLoadSuccess(stockResponse: StockResponse) {
-                Log.e("data",stockResponse.toString())
                 if(stockResponse.data !=null){
-
                     movieLive.value= stockResponse.data as ArrayList<DataItem>?
                 }
             }

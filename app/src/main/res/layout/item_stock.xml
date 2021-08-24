@@ -15,20 +15,20 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="AAA"
+            android:text="COIN"
             app:fontFamily="@font/inter_bold"
             android:textColor="@color/black"
             />
         <Space
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             />
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="AAA"
+            android:text="IDR 9999"
             app:fontFamily="@font/inter_bold"
             android:textColor="@color/black"
             />
@@ -43,20 +43,20 @@
             android:id="@+id/tv_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="AAA"
+            android:text="Coin Name"
             android:textSize="12sp"
             android:textColor="@color/grey"
             />
         <Space
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             />
         <TextView
             android:id="@+id/tv_lastupdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="AAA"
+            android:text="Just Now"
             android:textSize="12sp"
             android:textColor="@color/grey"
             />

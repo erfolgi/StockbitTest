@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.stockbit.hiring.data.source.ApiResponse
 import com.stockbit.hiring.data.source.remote.`interface`.StockInterface
 import com.stockbit.hiring.data.source.remote.response.StockResponse
+import com.stockbit.hiring.util.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,12 +26,13 @@ class RemoteDataSource (){
     }
 
     fun getStock(stockInterface: StockInterface, page:Int){
-        val resultStock = MutableLiveData<ApiResponse<StockResponse>>()
+        EspressoIdlingResource.increment()
         val call = apiCall.getStock(page)
         call.enqueue(object : Callback<StockResponse> {
             override fun onResponse(call: Call<StockResponse>, response: Response<StockResponse>
             ) {
                 if(response.body()!=null){
+                    EspressoIdlingResource.decrement()
                     response.body()?.let { stockInterface?.onLoadSuccess(it) }
                 }
             }
