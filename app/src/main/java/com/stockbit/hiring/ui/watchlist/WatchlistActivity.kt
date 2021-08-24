@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.stockbit.hiring.R
 import com.stockbit.hiring.databinding.ActivityLoginBinding
 import com.stockbit.hiring.databinding.ActivityWatchlistBinding
 import com.stockbit.hiring.util.PaginationListener
+import com.stockbit.hiring.util.Util
 import com.stockbit.hiring.util.ViewModelFactory
 
 class WatchlistActivity : AppCompatActivity() {
@@ -33,13 +35,13 @@ class WatchlistActivity : AppCompatActivity() {
         mBinding.rvStock.layoutManager=lmanager
         adapter = WatchlistAdapter(this)
         mBinding.rvStock.adapter=adapter
-
+        mBinding.rvStock.setHasFixedSize(true);
         mBinding.rvStock.addOnScrollListener(object : PaginationListener(lmanager){
             override fun loadMoreItems() {
                 if(!lastPage && !loading){
-                    loading=true
-                    pageX += 1;
-                    loadData()
+                        loading=true
+                        pageX += 1;
+                        loadData()
                 }
             }
 
@@ -54,6 +56,7 @@ class WatchlistActivity : AppCompatActivity() {
 
         mBinding.srStock.setOnRefreshListener {
             pageX=0
+            lastPage = false
             loadData()
         }
     }
@@ -64,12 +67,12 @@ class WatchlistActivity : AppCompatActivity() {
     }
 
     private fun loadData(){
+        loading=false
         if(pageX==0){
             mBinding.srStock.isRefreshing=true
         }
 
         vm.getStockList(pageX).observe(this, Observer {
-            //Log.e("data",it.toString())
             mBinding.srStock.isRefreshing=false
             if(it!=null){
                 if(pageX==0){
@@ -81,6 +84,7 @@ class WatchlistActivity : AppCompatActivity() {
 
             }
         })
+        lastPage = adapter.itemCount>=50
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): WatchlistViewModel {
